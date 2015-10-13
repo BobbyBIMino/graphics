@@ -13,6 +13,7 @@ const GLfloat RE = 0.03f; //ÑÛ¾¦°ë¾¶
 const GLfloat  RM= 0.1f; //×ì°Í°ë¾¶
 const GLfloat RA = 0.1f;//½Ç°ë¾¶
 const GLfloat  RF = 0.0966667;//³á°ò°ë¾¶
+GLfloat site = 1; //»Ó¶¯³á°òÊ±µÄÏµÊý
 
 GLfloat x = 0.0f;  //xÖá×ø±êÔ­µã
 GLfloat y = 0.0f;  //yÖá×ø±êÔ­µã
@@ -29,6 +30,95 @@ void myDisplay(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glLineWidth(2.5);
+
+	//×ó³á
+	glColor3f(0, 0, 0);
+	glBegin(GL_LINE_STRIP);
+	for (int i = 234; i<387; ++i)
+		glVertex2f((2.155172414*RF*cos(2 * Pi / n*i) + x - 0.541666667)*site, 2.931034483*RF*sin(2 * Pi / n*i) + y - 0.29);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = 440; i<512; ++i)
+		glVertex2f((1.862068966*RF*cos(2 * Pi / n*i) + x - 0.516666667)*site, 3.189655172*RF*sin(2 * Pi / n*i) + y - 0.075);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = 315; i<397; ++i)
+		glVertex2f((4.206896552*RF*cos(2 * Pi / n*i) + x - 0.516666667)*site, 2.672413793*RF*sin(2 * Pi / n*i) + y - 0.205);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = 339; i<493; ++i)
+		glVertex2f((5 * RF*cos(2 * Pi / n*i) + x - 0.346666667)*site, 4.172413793*RF*sin(2 * Pi / n*i) + y - 0.073333333);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = 441; i<739; ++i)
+		glVertex2f((1 * RF*cos(2 * Pi / n*i) + x - 0.506666667)*site, 1.517241379*RF*sin(2 * Pi / n*i) + y + 0.23);
+	glEnd();
+
+	//ÓÒ³á
+	glColor3f(0, 0, 0);
+	glBegin(GL_LINE_STRIP);
+	for (int i = -239; i<59; ++i)
+		glVertex2f((1 * RF*cos(2 * Pi / n*i) + x + 0.506666667)*site, 1.517241379*RF*sin(2 * Pi / n*i) + y + 0.23);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = 7; i<161; ++i)
+		glVertex2f((5 * RF*cos(2 * Pi / n*i) + x + 0.346666667)*site, 4.172413793*RF*sin(2 * Pi / n*i) + y - 0.073333333);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = 103; i<185; ++i)
+		glVertex2f((4.206896552*RF*cos(2 * Pi / n*i) + x + 0.516666667)*site, 2.672413793*RF*sin(2 * Pi / n*i) + y - 0.205);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = -12; i<60; ++i)
+		glVertex2f((1.862068966*RF*cos(2 * Pi / n*i) + x + 0.516666667)*site, 3.189655172*RF*sin(2 * Pi / n*i) + y - 0.075);
+	glEnd();
+
+	glBegin(GL_LINE_STRIP);
+	for (int i = 113; i<266; ++i)
+		glVertex2f((2.155172414*RF*cos(2 * Pi / n*i) + x + 0.541666667)*site, 2.931034483*RF*sin(2 * Pi / n*i) + y - 0.29);
+	glEnd();
+
+	//×ó½Ç
+	glColor3f(189.0 / 255, 192.0 / 255, 186.0 / 255);
+	glBegin(GL_POLYGON);
+	glVertex2f(-0.28, 0.38);
+	for (int i = 2.5 / 8 * n; i<n*4.5 / 8; ++i)
+		glVertex2f(-0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
+
+	glEnd();
+
+	glColor3f(0.0, 0.0, 0.0);
+	glBegin(GL_LINE_STRIP);
+	glVertex2f(-0.28, 0.38);
+	for (int i = 2.5 / 8 * n; i<n*4.5 / 8; ++i)
+		glVertex2f(-0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
+	glEnd();
+
+
+
+	//ÓÒ½Ç
+	glColor3f(189.0 / 255, 192.0 / 255, 186.0 / 255);
+	glBegin(GL_POLYGON);
+
+	for (int i = -0.5 / 8 * n; i<n*1.5 / 8; ++i)
+		glVertex2f(0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
+	glVertex2f(0.28, 0.38);
+	glEnd();
+
+	glColor3f(0.0, 0.0, 0.0);
+	glBegin(GL_LINE_STRIP);
+
+	for (int i = -0.5 / 8 * n; i<n*1.5 / 8; ++i)
+		glVertex2f(0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
+	glVertex2f(0.28, 0.38);
+	glEnd();
 	//ÉíÌå
 	glColor3f(189.0/255, 192.0/255, 186.0/255);
 	glBegin(GL_POLYGON);
@@ -67,70 +157,9 @@ void myDisplay(void)
 		glVertex2f(RM * 2.5* cos(2 * Pi / n*i) + x, -0.1 + RM * sin(2 * Pi / n*i) + y);
 	glEnd();
 
-	//×ó½Ç
-	glColor3f(189.0 / 255, 192.0 / 255, 186.0 / 255);
-	glBegin(GL_POLYGON);
-	glVertex2f(-0.28, 0.38);
-	for (int i =2.5/8*n; i<n*4.5/ 8; ++i)
-		glVertex2f(-0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA* 2 * sin(2 * Pi / n*i) + y);
-
-	glEnd();
-
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_LINE_STRIP);
-	glVertex2f(-0.28, 0.38);
-	for (int i = 2.5 / 8 * n; i<n*4.5 / 8; ++i)
-		glVertex2f(-0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
-	glEnd();
 
 
 
-	//ÓÒ½Ç
-	glColor3f(189.0 / 255, 192.0 / 255, 186.0 / 255);
-	glBegin(GL_POLYGON);
-	
-	for (int i = -0.5 / 8 * n; i<n*1.5 / 8; ++i)
-		glVertex2f(0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
-	glVertex2f(0.28, 0.38);
-	glEnd();
-
-	glColor3f(0.0, 0.0, 0.0);
-	glBegin(GL_LINE_STRIP);
-	
-	for (int i =-0.5 / 8 * n; i<n*1.5 / 8; ++i)
-		glVertex2f(0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
-	glVertex2f(0.28, 0.38);
-	glEnd();
-
-	//×ó³á
-	glColor3f(0,0,0);
-	glBegin(GL_LINE_STRIP);
-	for (int i = 234; i<387; ++i)
-		glVertex2f(2.155172414*RF*cos(2 * Pi / n*i) + x - 0.541666667, 2.931034483*RF*sin(2 * Pi / n*i) + y - 0.29);
-	glEnd();
-
-	glBegin(GL_LINE_STRIP);
-	for (int i =440; i<512; ++i)
-		glVertex2f(1.862068966*RF*cos(2 * Pi / n*i) + x - 0.516666667, 3.189655172*RF*sin(2 * Pi / n*i) + y - 0.075);
-	glEnd();
-
-	glBegin(GL_LINE_STRIP);
-	for (int i = 315; i<397; ++i)
-		glVertex2f(4.206896552*RF*cos(2 * Pi / n*i) + x - 0.516666667, 2.672413793*RF*sin(2 * Pi / n*i) + y - 0.205);
-	glEnd();
-
-	glBegin(GL_LINE_STRIP);
-	for (int i = 339; i<493; ++i)
-		glVertex2f(5 * RF*cos(2 * Pi / n*i) + x - 0.346666667, 4.172413793*RF*sin(2 * Pi / n*i) + y - 0.073333333);
-	glEnd();
-
-	glBegin(GL_LINE_STRIP);
-	for (int i = 441; i<739; ++i)
-		glVertex2f(1 * RF*cos(2 * Pi / n*i) + x - 0.506666667, 1.517241379*RF*sin(2 * Pi / n*i) + y + 0.23);
-	glEnd();
-
-
-	
 
 	//ÉíÌåÂÖÀª
 	
@@ -198,8 +227,23 @@ void mykey(unsigned char key, int ax, int ay)
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glLoadIdentity();
-		y -= 0.01;
+		
+		
+		site = 0.95;
+		Sleep(500);
 		myDisplay();
+		site = 1;
+		Sleep(300);
+		myDisplay();
+		site = 0.95;
+		Sleep(500);
+		myDisplay();
+		site = 1;
+		Sleep(300);
+		myDisplay();
+
+
+
 		glFlush();
 	}
 	if (key == 'Z' || key == 'z')
