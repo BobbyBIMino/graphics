@@ -9,9 +9,9 @@
 const int n = 1000;
 const GLfloat RB = 0.43f; //ÉíÌå°ë¾¶
 const GLfloat Pi = 3.1415926536f; //Ô²ÖÜÂÊ
-const GLfloat RE = 0.03f; //ÑÛ¾¦°ë¾¶
+const GLfloat RE = 0.04f; //ÑÛ¾¦°ë¾¶
 const GLfloat  RM= 0.1f; //×ì°Í°ë¾¶
-const GLfloat RA = 0.1f;//½Ç°ë¾¶
+const GLfloat RA = 0.13f;//½Ç°ë¾¶
 const GLfloat  RF = 0.0966667;//³á°ò°ë¾¶
 GLfloat site = 1; //»Ó¶¯³á°òÊ±µÄÏµÊý
 
@@ -88,7 +88,7 @@ void myDisplay(void)
 	//×ó½Ç
 	glColor3f(189.0 / 255, 192.0 / 255, 186.0 / 255);
 	glBegin(GL_POLYGON);
-	glVertex2f(-0.28, 0.38);
+	glVertex2f(-0.28+x, 0.38+y);
 	for (int i = 2.5 / 8 * n; i<n*4.5 / 8; ++i)
 		glVertex2f(-0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
 
@@ -96,7 +96,7 @@ void myDisplay(void)
 
 	glColor3f(0.0, 0.0, 0.0);
 	glBegin(GL_LINE_STRIP);
-	glVertex2f(-0.28, 0.38);
+	glVertex2f(-0.28+x, 0.38+y);
 	for (int i = 2.5 / 8 * n; i<n*4.5 / 8; ++i)
 		glVertex2f(-0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
 	glEnd();
@@ -109,7 +109,7 @@ void myDisplay(void)
 
 	for (int i = -0.5 / 8 * n; i<n*1.5 / 8; ++i)
 		glVertex2f(0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
-	glVertex2f(0.28, 0.38);
+	glVertex2f(0.28+x, 0.38+y);
 	glEnd();
 
 	glColor3f(0.0, 0.0, 0.0);
@@ -117,7 +117,7 @@ void myDisplay(void)
 
 	for (int i = -0.5 / 8 * n; i<n*1.5 / 8; ++i)
 		glVertex2f(0.31 + RA*cos(2 * Pi / n*i) + x, 0.36 + RA * 2 * sin(2 * Pi / n*i) + y);
-	glVertex2f(0.28, 0.38);
+	glVertex2f(0.28+x, 0.38+y);
 	glEnd();
 	//ÉíÌå
 	glColor3f(189.0/255, 192.0/255, 186.0/255);
@@ -125,7 +125,7 @@ void myDisplay(void)
 	for (int i = 0; i<n/2; ++i)
 		glVertex2f(RB*1.2*cos(2 * Pi / n*i) + x, RB*1.1*sin(2 * Pi / n*i) + y);
 	for (int i =n/2; i<n; ++i)
-		glVertex2f(RB*1.2*cos(2 * Pi / n*i) + x, RB*sin(2 * Pi / n*i) + y);
+		glVertex2f(RB*1.2*cos(2 * Pi / n*i) + x, RB*0.9*sin(2 * Pi / n*i) + y);
 	glEnd();
 
 
@@ -152,9 +152,9 @@ void myDisplay(void)
 	
 	glBegin(GL_LINE_STRIP);	
 	for (int i = n * 5/8 ; i<n * 3.0/4; ++i)
-		glVertex2f( RM*3.4*cos(2 * Pi / n*i) + x, -0.1+ RM *sin(2 * Pi / n*i) + y);
+		glVertex2f( RM*3.4*cos(2 * Pi / n*i) + x, -0.08+ RM *sin(2 * Pi / n*i) + y);
 	for (int i = n * 3.0 / 4; i<n *7 / 8; ++i)
-		glVertex2f(RM * 2.5* cos(2 * Pi / n*i) + x, -0.1 + RM * sin(2 * Pi / n*i) + y);
+		glVertex2f(RM * 2.5* cos(2 * Pi / n*i) + x, -0.08 + RM * sin(2 * Pi / n*i) + y);
 	glEnd();
 
 
@@ -168,7 +168,7 @@ void myDisplay(void)
 	for (int i = 0; i<n / 2; ++i)
 		glVertex2f(RB*1.2*cos(2 * Pi / n*i) + x, RB*1.1*sin(2 * Pi / n*i) + y);
 	for (int i = n / 2; i<n; ++i)
-		glVertex2f(RB*1.2*cos(2 * Pi / n*i) + x, RB*sin(2 * Pi / n*i) + y);
+		glVertex2f(RB*1.2*cos(2 * Pi / n*i) + x, RB*0.9*sin(2 * Pi / n*i) + y);
 	glEnd();
 
 
@@ -230,20 +230,23 @@ void mykey(unsigned char key, int ax, int ay)
 		
 		
 		site = 0.95;
+		
 		Sleep(500);
 		myDisplay();
 		site = 1;
 		Sleep(300);
 		myDisplay();
+		
+		Sleep(500);
 		site = 0.95;
+		y -= 0.025;
+		myDisplay();
+		
+
+		site = 1;
+		y -= 0.025;
 		Sleep(500);
 		myDisplay();
-		site = 1;
-		Sleep(300);
-		myDisplay();
-
-
-
 		glFlush();
 	}
 	if (key == 'Z' || key == 'z')
