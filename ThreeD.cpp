@@ -10,7 +10,17 @@ ThreeD::ThreeD()
 	y = 0.0f;  //y轴坐标原点
 	z = 0.0f; //z轴坐标原点
 	n = 1000;
-	init();
+	RB = 0.43f; //身体半径
+	Pi = 3.1415926536f; //圆周率
+	RE = 0.039f; //眼睛半径
+	RM = 0.1f; //嘴巴半径
+	RA = 0.13f;//角半径
+	RF = 0.0966667;//翅膀半
+	site = 1;
+
+	sx = 1.0f; //x轴缩放参数
+	sy = 1.0f; //y轴缩放参数
+	sz = 1.0f; //z轴缩放参数
 
 }
 
@@ -20,7 +30,17 @@ ThreeD::ThreeD(GLfloat x0, GLfloat y0, GLfloat z0)
 	y = y0;  //y轴坐标原点
 	z = z0; //z轴坐标原点
 	n = 1000;
-	init();
+	RB = 0.43f; //身体半径
+	Pi = 3.1415926536f; //圆周率
+	RE = 0.039f; //眼睛半径
+	RM = 0.1f; //嘴巴半径
+	RA = 0.13f;//角半径
+	RF = 0.0966667;//翅膀半
+	site = 1;
+
+	sx = 1.0f; //x轴缩放参数
+	sy = 1.0f; //y轴缩放参数
+	sz = 1.0f; //z轴缩放参数
 }
 
 void ThreeD::setMatrix()
@@ -43,10 +63,6 @@ void ThreeD::setMatrix()
 
 void ThreeD::display()
 {
-	glViewport(x, 0, 600, 600);
-	glClearColor(1.0, 1.0, 1.0, 1.0); //设置背景为白色
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glLineWidth(4.5);
 	//左翅
 	glColor3f(0, 0, 0);
@@ -383,41 +399,6 @@ void ThreeD::mouse(int a, int b)
 
 void ThreeD::init()
 {
-	glClearColor(1.0, 1.0, 1.0, 1.0); //设置背景为白色
-	n = 1000;
-	RB = 0.43f; //身体半径
-	Pi = 3.1415926536f; //圆周率
-	RE = 0.039f; //眼睛半径
-	RM = 0.1f; //嘴巴半径
-	RA = 0.13f;//角半径
-	RF = 0.0966667;//翅膀半
-	site = 1;
-
-	sx = 1.0f; //x轴缩放参数
-	sy = 1.0f; //y轴缩放参数
-	sz = 1.0f; //z轴缩放参数
-	glEnable(GL_DEPTH_TEST);
-	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glShadeModel(GL_SMOOTH);
-	gluOrtho2D(-1.0, 1.0, -1.0, 1.0);
-	
-	GLfloat _ambient[] = { 1.0,1.0,1.0,1.0 };
-	GLfloat _diffuse[] = { 1.0,1.0,1.0,1.0 };
-	GLfloat _specular[] = { 1.0,1.0,1.0,1.0 };
-	GLfloat _position[] = { 200,200,200,0 };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, _ambient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, _diffuse);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, _specular);
-	glLightfv(GL_LIGHT0, GL_POSITION, _position);
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_DEPTH_TEST);
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-	
 
 }
 
